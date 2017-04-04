@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>MobileConsole</title>
+	</head>
+	<body>
+		
+		<article>
+			<h1>readme</h1>
+			<p>version 0.1</p>
+			<p>MobileConsole.js希望可以帮助开发者更轻松地进行移动端(特别是微信)调试，主要功能是提供一个微型版的控制台，便于在手机上看到输出的调试信息。该插件的主要特点如下：</p>
+			<ul>
+				<li>与浏览器平台无关。不管是微信网页、UC网页还是其他网页甚至是Hybrid APP都可以使用。</li>
+				<li>最大程度与浏览器自带的console功能接近，提供了info、warn、err函数，满足绝大部分的调试需要。</li>
+				<li>提供调试信息的附加信息，例如第几条调试信息、该调试信息的输出时间，这样可以方便开发者在大量的调试输出信息中快速记住自己所需要关注的调试信息索引号、时间区间，便于后续分析。</li>
+				<li>可以拖动。移动端屏幕空间寸金尺土，所以希望控制台可以根据需要拖动到所需要的位置。</li>
+				<li>支持控制台窗口最小化、最大化之间切换，最大程度减少控制台对页面观察的影响。</li>
+				<li>支持调试信息输出时是否马上滚动到底部的选项，便于开发者观察最新的调试信息或者仔细阅读当前调试信息。</li>
+				<li>极低的侵入性。当不需要调试信息输出重定向时，只需要把插件移除即可，不需要做任何的清除操作。</li>
+			</ul>
+			
+			<p>用法如下</p>
+			<p>在需要输出调试信息的地方调用window.MobileConsole.info(msg)、window.MobileConsole.warn(msg)、window.MobileConsole.err(msg)，即可在模拟控制台中看到输出的调试信息。</p>
+			<p>但上述用法有一个弊端，在于不需要使用该插件时需要手动清除相关调用语句，造成工作量的增多。官方推荐下述用法：</p>
+			<ul>
+				<li>console.info(log);</li>
+				<li>console.warn(log);</li>
+				<li>console.error(log);</li>
+			</ul>
+			<p>这样同样可以达到输出调试信息重定向的目的，而且不需要本调试插件时不需要手动清除任何代码，真正做到热插拔。</p>
+		</article>
+		
+		<script type="text/javascript" src="js/10MobileConsole.js" ></script>
+		<script>
+			
+			var logs = [1, 2, 3, 4, 5];
+			logs.forEach(function(log, idx) {
+				window.MobileConsole.info("这是info" + log);
+				window.MobileConsole.warn("这是warn" + log);
+				window.MobileConsole.err("这是err" + log);
+			});
+			
+			logs.forEach(function(log, idx) {
+				console.info(log);
+				console.warn(log);
+				console.error(log);
+			});
+		</script>
+	</body>
+</html>
